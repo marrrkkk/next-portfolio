@@ -6,7 +6,7 @@ import Image from "next/image";
 
 const Tech = () => {
   return (
-    <div className="mt-40 lg:w-[45%] w-[80%]">
+    <div className="mt-40 xl:w-[45%] md:w-[70%] w-[80%]">
       <h1 className="font-medium text-3xl mb-7">My Technologies</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 justify-items-center">
         {techs.map((tech, index) => (

@@ -2,7 +2,7 @@ import { experience } from "@/lib/data";
 
 const Experience = () => {
   return (
-    <div className="mt-20 lg:w-[45%] w-[80%]">
+    <div className="mt-20 xl:w-[45%] md:w-[70%] w-[80%]">
       <h1 className="font-medium text-3xl mb-7">Work Experience</h1>
       {experience.map((experience, index) => (
         <div className="lg:flex lg:space-x-5 mt-5" key={index}>

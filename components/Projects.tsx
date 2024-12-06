@@ -9,7 +9,7 @@ import Link from "next/link";
 
 const Projects = () => {
   return (
-    <div className="mt-20 lg:w-[45%] w-[80%]">
+    <div className="mt-20 xl:w-[45%] md:w-[70%] w-[80%]">
       <h1 className="font-medium text-3xl mb-7">Projects</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 justify-items-center">
         {projects.map((project, index) => (
