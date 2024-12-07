@@ -31,14 +31,14 @@ const ScrollButton = () => {
   return (
     <div className="relative w-full h-full">
       <div
-        className="absolute top-52 left-1/2 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+        className="absolute top-44 left-1/2 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer"
         style={{ opacity }}
         onClick={handleClick}
       >
-        <Mouse strokeWidth={1} />
+        <Mouse strokeWidth={1.3} />
         <ChevronDown
           className="animate-bounce"
-          strokeWidth={1}
+          strokeWidth={1.3}
         />
       </div>
     </div>
