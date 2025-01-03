@@ -1,15 +1,16 @@
 import {
   FaGithub,
-  FaBehanceSquare,
   FaInstagram,
   FaLinkedin,
-} from "react-icons/fa";
+  FaXTwitter,
+} from "react-icons/fa6";
 import BoxReveal from "./ui/box-reveal";
 import GridPattern from "./ui/animated-grid-pattern";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import PulsatingButton from "./ActiveButton";
 import ScrollButton from "./ScrollButton";
+import Link from "next/link";
 
 const Hero = () => {
   return (
@@ -48,16 +49,16 @@ const Hero = () => {
       <BoxReveal boxColor="black" duration={0.5}>
         <ul className="flex space-x-2 mt-3">
           <li>
-            <FaGithub className="size-7 md:size-8" />
+            <Link href={"https://github.com/marrrkkk"} target="_blank"><FaGithub className="size-7 md:size-8" /></Link>
           </li>
           <li>
-            <FaBehanceSquare className="size-7 md:size-8" />
+            <Link href={"https://x.com/marrrkkk__"} target="_blank"><FaXTwitter className="size-7 md:size-8" /></Link>
           </li>
           <li>
-            <FaInstagram className="size-7 md:size-8" />
+            <Link href={"https://www.instagram.com/marrrrkkkk__/"} target="_blank"><FaInstagram className="size-7 md:size-8" /></Link>
           </li>
           <li>
-            <FaLinkedin className="size-7 md:size-8" />
+            <Link href={"https://www.linkedin.com/in/mark-louie-alvarez-b90162257/"} target="_blank"><FaLinkedin className="size-7 md:size-8" /></Link>
           </li>
         </ul>
       </BoxReveal>
