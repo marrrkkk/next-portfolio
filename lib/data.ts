@@ -15,7 +15,7 @@ export const links = [
   {
     title: "Resume",
     icon: React.createElement(ScrollText),
-    href: "#",
+    href: "/resume.pdf",
   },
   {
     title: "Email",
