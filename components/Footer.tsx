@@ -2,6 +2,7 @@ import Link from "next/link";
 import { RainbowButton } from "./ui/rainbow-button";
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear(); 
   return (
     <footer className="w-full">
       <div className="my-40 text-center">
@@ -12,7 +13,7 @@ const Footer = () => {
         </RainbowButton>
       </div>
       <div className="ml-10 mb-5 text-zinc-500 text-sm">
-        <p>© 2024 Mark Louie Alvarez</p>
+        <p>© {currentYear} Mark Louie Alvarez</p>
       </div>
     </footer>
   );
