@@ -70,18 +70,18 @@ export const techs = [
 
 export const experience = [
   {
-    title: "Full-Stack Developer",
-    company: "Freelance",
-    date: "September - October 2024",
+    title: "Frontend Developer",
+    company: "Nyvora",
+    date: "July 2025 - Present",
     description:
-      "Developed a custom full-stack web app for a client, handling both front-end (Nextjs) and back-end (Supabase) development. Deployed the app using cloud services, with user authentication.",
+      "Developed responsive front-end features using React and Tailwind CSS. Collaborated with designers and integrated APIs to deliver a smooth user experience.",
   },
   {
-    title: "Front-End Developer",
+    title: "Web Developer",
     company: "Freelance",
-    date: "August - September 2024",
+    date: "Aug 2024 - July 2025",
     description:
-      "Designed and built a responsive front-end for a personal blog using HTML, CSS, and React.js. Collaborated with the client to create a user-friendly, modern interface optimized for readability and mobile responsiveness.",
+      "Created landing pages and full-stack web apps for clients using React, Next.js, and Supabase. Handled full development cycle from requirements to deployment.",
   },
 ];
 

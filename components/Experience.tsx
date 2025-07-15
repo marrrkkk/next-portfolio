@@ -6,7 +6,7 @@ const Experience = () => {
       <h1 className="font-medium text-3xl mb-7">Work Experience</h1>
       {experience.map((experience, index) => (
         <div className="lg:flex lg:space-x-5 mt-5" key={index}>
-          <p className="text-zinc-500 dark:text-[#cecece] text-sm">
+          <p className="w-36 text-zinc-500 dark:text-[#cecece] text-sm">
             {experience.date}
           </p>
           <div className="lg:w-[70%]">
