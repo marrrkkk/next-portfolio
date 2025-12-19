@@ -84,6 +84,20 @@ function Dock({
 }: DockProps) {
   const mouseX = useMotionValue(Infinity);
   const isHovered = useMotionValue(0);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const dockRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Detect if device supports touch
+    const hasTouch = () => {
+      return (
+        window.matchMedia('(pointer: coarse)').matches ||
+        navigator.maxTouchPoints > 0 ||
+        navigator.msMaxTouchPoints > 0
+      );
+    };
+    setIsTouchDevice(hasTouch());
+  }, []);
 
   const maxHeight = useMemo(() => {
     return Math.max(DOCK_HEIGHT, magnification + magnification / 2 + 4);
@@ -91,6 +105,24 @@ function Dock({
 
   const heightRow = useTransform(isHovered, [0, 1], [panelHeight, maxHeight]);
   const height = useSpring(heightRow, spring);
+
+  const handleMouseMove = ({ pageX }: { pageX: number }) => {
+    isHovered.set(1);
+    mouseX.set(pageX);
+  };
+
+  const handleMouseLeave = () => {
+    isHovered.set(0);
+    mouseX.set(Infinity);
+  };
+
+  const handleTouchEnd = () => {
+    // Reset hover state after touch to prevent stuck hover
+    setTimeout(() => {
+      isHovered.set(0);
+      mouseX.set(Infinity);
+    }, 300);
+  };
 
   return (
     <motion.div
@@ -101,14 +133,10 @@ function Dock({
       className='mx-2 flex max-w-full items-end overflow-x-auto'
     >
       <motion.div
-        onMouseMove={({ pageX }) => {
-          isHovered.set(1);
-          mouseX.set(pageX);
-        }}
-        onMouseLeave={() => {
-          isHovered.set(0);
-          mouseX.set(Infinity);
-        }}
+        ref={dockRef}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        onTouchEnd={handleTouchEnd}
         className={cn(
           'mx-auto flex w-fit gap-4 rounded-2xl bg-gray-100 px-4 dark:bg-neutral-900',
           className
