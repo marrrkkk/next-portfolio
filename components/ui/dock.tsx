@@ -92,8 +92,7 @@ function Dock({
     const hasTouch = () => {
       return (
         window.matchMedia('(pointer: coarse)').matches ||
-        navigator.maxTouchPoints > 0 ||
-        navigator.msMaxTouchPoints > 0
+        navigator.maxTouchPoints > 0
       );
     };
     setIsTouchDevice(hasTouch());
