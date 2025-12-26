@@ -70,18 +70,18 @@ export const techs = [
 
 export const experience = [
   {
-    title: "Frontend Developer",
+    title: "Full Stack Developer",
     company: "Nyvora",
-    date: "July 2025 - Present",
+    date: "July 2025 - Nov 2025",
     description:
-      "Developed responsive front-end features using React and Tailwind CSS. Collaborated with designers and integrated APIs to deliver a smooth user experience.",
+      "Built responsive front-end features with React and developed Django-based backend APIs, integrating both to deliver a seamless end-to-end user experience.",
   },
   {
-    title: "Web Developer",
-    company: "Freelance",
+    title: "Freelance Web Developer",
+    company: "Self-employed",
     date: "Aug 2024 - July 2025",
     description:
-      "Created landing pages and full-stack web apps for clients using React, Next.js, and Supabase. Handled full development cycle from requirements to deployment.",
+      "Built landing pages and full-stack web applications using React, Next.js, and Supabase, managing the entire development lifecycle from requirements to deployment.",
   },
 ];
 

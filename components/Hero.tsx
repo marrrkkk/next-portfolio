@@ -8,7 +8,7 @@ import BoxReveal from "./ui/box-reveal";
 import GridPattern from "./ui/animated-grid-pattern";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import PulsatingButton from "./ActiveButton";
+import ResumeButton from "./ResumeButton";
 import ScrollButton from "./ScrollButton";
 import Link from "next/link";
 
@@ -39,10 +39,10 @@ const Hero = () => {
         </div>
         <div className="flex space-x-3 items-center">
           <BoxReveal boxColor="black" duration={0.5}>
-            <h2 className="text-2xl md:text-4xl font-medium">Web Developer</h2>
+            <h2 className="text-2xl md:text-4xl font-medium">Software Engineer</h2>
           </BoxReveal>
           <BoxReveal boxColor="black" duration={0.5}>
-            <PulsatingButton />
+            <ResumeButton />
           </BoxReveal>
         </div>
       </div>
