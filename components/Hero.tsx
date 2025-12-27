@@ -20,7 +20,7 @@ const Hero = () => {
           <BoxReveal boxColor="black" duration={0.5}>
             <Image
               src="/me.png"
-              alt="me"
+              alt="Mark Louie Alvarez - Full-Stack Developer"
               className="float-start"
               height={70}
               width={70}

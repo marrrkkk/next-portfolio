@@ -13,10 +13,10 @@ const Tech = () => {
           <motion.div
             className="dark:bg-neutral-900 bg-neutral-100 lg:w-[250px] w-full rounded-lg flex items-center space-x-3 p-2"
             key={index}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1, duration: 0.3 }}
-            viewport={{ once: true }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ delay: index * 0.05, duration: 0.4, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.3 }}
           >
             <div
               className={`p-3 rounded-md`}
