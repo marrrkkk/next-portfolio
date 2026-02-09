@@ -70,6 +70,12 @@ export const techs = [
 
 export const experience = [
   {
+    title: "Software Development Intern",
+    company: "Open iT",
+    date: "Feb 2026 - Present",
+    description: "Gaining hands-on experience in real-world software development by working in an Agile Scrum environment, practicing test-driven development (TDD), and contributing to CI/CD pipelines on production-level code."
+  },
+  {
     title: "Full Stack Developer",
     company: "Nyvora",
     date: "July 2025 - Nov 2025",
