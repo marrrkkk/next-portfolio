@@ -85,7 +85,7 @@ export const experience = [
   {
     title: "Freelance Web Developer",
     company: "Self-employed",
-    date: "Aug 2024 - July 2025",
+    date: "Aug 2024 - Present",
     description:
       "Built landing pages and full-stack web applications using React, Next.js, and Supabase, managing the entire development lifecycle from requirements to deployment.",
   },
@@ -93,27 +93,27 @@ export const experience = [
 
 export const projects = [
   {
-    title: "NoteMe",
+    title: "Upclass",
     tech: "Nextjs, Supabase",
     image: '/projects/01.webp',
-    url: 'https://notemelink.vercel.app/'
-  },
-  {
-    title: "Movie Browser",
-    tech: "Nextjs, Shadcn",
-    image: '/projects/02.webp',
-    url: 'https://nextjs-movie-search.vercel.app/'
+    url: 'https://upclass-one.vercel.app/'
   },
   {
     title: "Saas Landing Page",
-    tech: "Nextjs, Supabase",
-    image: '/projects/03.webp',
+    tech: "Nextjs, Shadcn",
+    image: '/projects/02.webp',
     url: 'https://saas-landing-page-mark.vercel.app/'
   },
   {
     title: "Github Card Generator",
+    tech: "Nextjs, Supabase",
+    image: '/projects/03.webp',
+    url: 'https://github-stats-card-generator.vercel.app/'
+  },
+  {
+    title: "NoteMe",
     tech: "Nexjs, Github API",
     image: '/projects/04.webp',
-    url: 'https://github-stats-card-generator.vercel.app/'
+    url: 'https://notemelink.vercel.app/'
   },
 ];
