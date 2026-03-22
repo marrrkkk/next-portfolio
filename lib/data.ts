@@ -96,7 +96,7 @@ export const projects = [
     title: "Upclass",
     tech: "Nextjs, Supabase",
     image: '/projects/01.webp',
-    url: 'https://upclass-one.vercel.app/'
+    url: 'https://upclass.xyz/'
   },
   {
     title: "Saas Landing Page",
@@ -106,13 +106,13 @@ export const projects = [
   },
   {
     title: "Github Card Generator",
-    tech: "Nextjs, Supabase",
+    tech: "Nextjs, Github API",
     image: '/projects/03.webp',
     url: 'https://github-stats-card-generator.vercel.app/'
   },
   {
     title: "NoteMe",
-    tech: "Nexjs, Github API",
+    tech: "Nexjs, Clerk",
     image: '/projects/04.webp',
     url: 'https://notemelink.vercel.app/'
   },
