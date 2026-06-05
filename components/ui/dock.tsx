@@ -8,7 +8,7 @@ import {
   useTransform,
   type SpringOptions,
   AnimatePresence,
-} from 'framer-motion';
+} from 'motion/react';
 import {
   Children,
   cloneElement,
@@ -84,19 +84,14 @@ function Dock({
 }: DockProps) {
   const mouseX = useMotionValue(Infinity);
   const isHovered = useMotionValue(0);
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
-  const dockRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    // Detect if device supports touch
-    const hasTouch = () => {
-      return (
-        window.matchMedia('(pointer: coarse)').matches ||
-        navigator.maxTouchPoints > 0
-      );
-    };
-    setIsTouchDevice(hasTouch());
+  const isTouchDevice = useMemo(() => {
+    if (typeof window === 'undefined') return false;
+    return (
+      window.matchMedia('(pointer: coarse)').matches ||
+      navigator.maxTouchPoints > 0
+    );
   }, []);
+  const dockRef = useRef<HTMLDivElement>(null);
 
   const maxHeight = useMemo(() => {
     return Math.max(DOCK_HEIGHT, magnification + magnification / 2 + 4);
@@ -190,7 +185,7 @@ function DockItem({ children, className, onClick }: DockItemProps) {
       aria-haspopup='true'
     >
       {Children.map(children, (child) =>
-        cloneElement(child as React.ReactElement, { width, isHovered })
+        cloneElement(child as React.ReactElement<any>, { width, isHovered })
       )}
     </motion.div>
   );

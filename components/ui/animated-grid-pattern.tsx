@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 import { cn } from "@/lib/utils";
 
@@ -68,7 +68,7 @@ export function GridPattern({
   // Update squares to animate in
   useEffect(() => {
     if (dimensions.width && dimensions.height) {
-      setSquares(generateSquares(numSquares));
+      setSquares(generateSquares(numSquares)); // eslint-disable-line react-hooks/set-state-in-effect
     }
   }, [dimensions, numSquares]);
 
