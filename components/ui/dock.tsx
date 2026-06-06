@@ -8,7 +8,7 @@ import {
   useTransform,
   type SpringOptions,
   AnimatePresence,
-} from 'framer-motion';
+} from 'motion/react';
 import {
   Children,
   cloneElement,
@@ -38,6 +38,7 @@ type DockItemProps = {
   className?: string;
   children: React.ReactNode;
   onClick?: () => void;
+  'aria-label'?: string;
 };
 
 type DockLabelProps = {
@@ -84,19 +85,14 @@ function Dock({
 }: DockProps) {
   const mouseX = useMotionValue(Infinity);
   const isHovered = useMotionValue(0);
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
-  const dockRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    // Detect if device supports touch
-    const hasTouch = () => {
-      return (
-        window.matchMedia('(pointer: coarse)').matches ||
-        navigator.maxTouchPoints > 0
-      );
-    };
-    setIsTouchDevice(hasTouch());
+  const isTouchDevice = useMemo(() => {
+    if (typeof window === 'undefined') return false;
+    return (
+      window.matchMedia('(pointer: coarse)').matches ||
+      navigator.maxTouchPoints > 0
+    );
   }, []);
+  const dockRef = useRef<HTMLDivElement>(null);
 
   const maxHeight = useMemo(() => {
     return Math.max(DOCK_HEIGHT, magnification + magnification / 2 + 4);
@@ -137,7 +133,7 @@ function Dock({
         onMouseLeave={handleMouseLeave}
         onTouchEnd={handleTouchEnd}
         className={cn(
-          'mx-auto flex w-fit gap-4 rounded-2xl bg-gray-100 px-4 dark:bg-neutral-900',
+          'mx-auto flex w-fit gap-4 rounded-full bg-gray-100 px-5 dark:bg-neutral-900',
           className
         )}
         style={{ height: panelHeight }}
@@ -152,7 +148,7 @@ function Dock({
   );
 }
 
-function DockItem({ children, className, onClick }: DockItemProps) {
+function DockItem({ children, className, onClick, ...props }: DockItemProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   const { distance, magnification, mouseX, spring } = useDock();
@@ -185,12 +181,13 @@ function DockItem({ children, className, onClick }: DockItemProps) {
         'relative inline-flex items-center justify-center',
         className
       )}
-      tabIndex={0}
-      role='button'
-      aria-haspopup='true'
+      tabIndex={onClick ? 0 : undefined}
+      role={onClick ? 'button' : undefined}
+      aria-haspopup={onClick ? 'true' : undefined}
+      aria-label={props['aria-label']}
     >
       {Children.map(children, (child) =>
-        cloneElement(child as React.ReactElement, { width, isHovered })
+        cloneElement(child as React.ReactElement<any>, { width, isHovered })
       )}
     </motion.div>
   );

@@ -2,23 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: "SFProRegular";
-  src: url("./fonts/SFPRODISPLAYREGULAR.OTF") format("opentype");
-}
-
-@font-face {
-  font-family: "SFProMedium";
-  src: url("./fonts/SFPRODISPLAYMEDIUM.OTF") format("opentype");
-}
-
-@font-face {
-  font-family: "SFProBold";
-  src: url("./fonts/SFPRODISPLAYBOLD.OTF") format("opentype");
-}
-
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-regular), Arial, Helvetica, sans-serif;
   overflow-anchor: none;
 }
 
@@ -30,6 +15,7 @@ html {
   .text-balance {
     text-wrap: balance;
   }
+
 }
 
 @layer base {

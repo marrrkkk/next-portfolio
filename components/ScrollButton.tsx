@@ -1,46 +1,50 @@
-"use client"; // This ensures that the component runs on the client side
+"use client";
 
-import { useState, useEffect } from "react"; // Adjust import as needed
-import { ChevronDown, Mouse } from "lucide-react"; // Adjust import as needed
+import { useState, useEffect, useCallback, useRef } from "react";
+import { ChevronDown, Mouse } from "lucide-react";
 
 const ScrollButton = () => {
   const [opacity, setOpacity] = useState(1);
+  const ticking = useRef(false);
 
-  // Handle scroll event to fade the ChevronDown
-  const handleScroll = () => {
-    const scrollY = window.scrollY;
-    setOpacity(Math.max(1 - scrollY / 200, 0)); // Decrease opacity as you scroll
-  };
+  const handleScroll = useCallback(() => {
+    if (!ticking.current) {
+      ticking.current = true;
+      requestAnimationFrame(() => {
+        setOpacity(Math.max(1 - window.scrollY / 200, 0));
+        ticking.current = false;
+      });
+    }
+  }, []);
 
-  // Scroll the page when the ChevronDown is clicked
   const handleClick = () => {
     window.scrollBy({
-      top: 500, // Scroll down by 200px
-      behavior: "smooth", // Smooth scroll effect
+      top: 500,
+      behavior: "smooth",
     });
   };
 
-  // Add scroll event listener
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [handleScroll]);
 
   return (
     <div className="relative w-full h-full">
-      <div
+      <button
         className="absolute top-44 left-1/2 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer"
         style={{ opacity }}
         onClick={handleClick}
+        aria-label="Scroll down"
       >
         <Mouse strokeWidth={1.3} />
         <ChevronDown
           className="animate-bounce"
           strokeWidth={1.3}
         />
-      </div>
+      </button>
     </div>
   );
 };

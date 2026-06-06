@@ -1,5 +1,5 @@
 import React from "react";
-import { Activity, HomeIcon, Mail, ScrollText, SunMoon } from "lucide-react";
+import { HomeIcon, FolderOpen, Github, Linkedin, ScrollText, Mail, Sun, Moon } from "lucide-react";
 
 export const links = [
   {
@@ -8,9 +8,19 @@ export const links = [
     href: "#",
   },
   {
-    title: "Activity",
-    icon: React.createElement(Activity),
-    href: "https://wakatime.com/@marrkkk",
+    title: "Projects",
+    icon: React.createElement(FolderOpen),
+    href: "#projects",
+  },
+  {
+    title: "GitHub",
+    icon: React.createElement(Github),
+    href: "https://github.com/marrrkkk",
+  },
+  {
+    title: "LinkedIn",
+    icon: React.createElement(Linkedin),
+    href: "https://www.linkedin.com/in/mark-louie-alvarez-b90162257/",
   },
   {
     title: "Resume",
@@ -24,7 +34,7 @@ export const links = [
   },
   {
     title: "Theme",
-    icon: React.createElement(SunMoon),
+    icon: React.createElement(Sun),
     href: "#",
   },
 ];
@@ -49,10 +59,10 @@ export const techs = [
     color: "#0ea5e933",
   },
   {
-    name: "Figma",
-    description: "Design Tool",
-    icon: "/figma.svg",
-    color: "#0acf8333",
+    name: "Claude Code",
+    description: "AI Agent",
+    icon: "/claude.svg",
+    color: "#d4783733",
   },
   {
     name: "Supabase",
@@ -94,26 +104,30 @@ export const experience = [
 export const projects = [
   {
     title: "Upclass",
-    tech: "Nextjs, Supabase",
-    image: '/projects/01.webp',
-    url: 'https://upclass.xyz/'
+    description: "A modern classroom management platform for educators and students.",
+    tech: ["Next.js", "Supabase"],
+    image: "/projects/01.webp",
+    url: "https://upclass.xyz/",
   },
   {
     title: "Saas Landing Page",
-    tech: "Nextjs, Shadcn",
-    image: '/projects/02.webp',
-    url: 'https://saas-landing-page-mark.vercel.app/'
+    description: "A polished, conversion-focused landing page template for SaaS products.",
+    tech: ["Next.js", "Shadcn"],
+    image: "/projects/02.webp",
+    url: "https://saas-landing-page-mark.vercel.app/",
   },
   {
     title: "Github Card Generator",
-    tech: "Nextjs, Github API",
-    image: '/projects/03.webp',
-    url: 'https://github-stats-card-generator.vercel.app/'
+    description: "Generate and customize beautiful GitHub profile stat cards.",
+    tech: ["Next.js", "GitHub API"],
+    image: "/projects/03.webp",
+    url: "https://github-stats-card-generator.vercel.app/",
   },
   {
     title: "NoteMe",
-    tech: "Nexjs, Clerk",
-    image: '/projects/04.webp',
-    url: 'https://notemelink.vercel.app/'
+    description: "A minimal note-taking app with authentication and real-time sync.",
+    tech: ["Next.js", "Clerk"],
+    image: "/projects/04.webp",
+    url: "https://notemelink.vercel.app/",
   },
 ];

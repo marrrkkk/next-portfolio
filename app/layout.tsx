@@ -2,13 +2,35 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import StructuredData from "@/components/StructuredData";
+import localFont from "next/font/local";
+
+const sfProRegular = localFont({
+  src: "./fonts/sfprodisplayregular.otf",
+  variable: "--font-regular",
+  display: "swap",
+  preload: true,
+});
+
+const sfProMedium = localFont({
+  src: "./fonts/sfprodisplaymedium.otf",
+  variable: "--font-medium",
+  display: "swap",
+  preload: false,
+});
+
+const sfProBold = localFont({
+  src: "./fonts/sfprodisplaybold.otf",
+  variable: "--font-bold",
+  display: "swap",
+  preload: false,
+});
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://your-portfolio-domain.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Mark Louie Alvarez - Full-Stack Developer & Software Engineer",
+    default: "Mark Louie Alvarez | Software Engineer",
     template: "%s | Mark Louie Alvarez",
   },
   description: "Full-Stack Developer based in the Philippines. Specialized in React, Next.js, and modern web development. Building responsive web applications and full-stack solutions.",
@@ -38,7 +60,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: siteUrl,
-    title: "Mark Louie Alvarez - Full-Stack Developer & Software Engineer",
+    title: "Mark Louie Alvarez - Software Engineer",
     description: "Full-Stack Developer based in the Philippines. Specialized in React, Next.js, and modern web development.",
     siteName: "Mark Louie Alvarez Portfolio",
     images: [
@@ -52,7 +74,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mark Louie Alvarez - Full-Stack Developer & Software Engineer",
+    title: "Mark Louie Alvarez - Software Engineer",
     description: "Full-Stack Developer based in the Philippines. Specialized in React, Next.js, and modern web development.",
     creator: "@marrrkkk__",
     images: ["/me.png"],
@@ -86,7 +108,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning className={`${sfProRegular.variable} ${sfProMedium.variable} ${sfProBold.variable}`}>
       <body className="flex flex-col justify-center items-center font-regular">
         <StructuredData />
         <ThemeProvider attribute="class" defaultTheme="dark">
