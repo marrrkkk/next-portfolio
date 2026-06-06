@@ -124,21 +124,45 @@ function Dock({
         height: height,
         scrollbarWidth: 'none',
       }}
-      className='mx-2 flex max-w-full items-end overflow-x-auto'
+      className='mx-2 flex max-w-full items-end overflow-visible'
     >
+      <svg
+        className='absolute h-0 w-0 overflow-hidden'
+        aria-hidden='true'
+        focusable='false'
+      >
+        <filter id='dock-liquid-glass-filter' x='-20%' y='-20%' width='140%' height='140%'>
+          <feTurbulence
+            type='fractalNoise'
+            baseFrequency='0.015 0.035'
+            numOctaves='2'
+            seed='8'
+            result='map'
+          />
+          <feGaussianBlur in='SourceGraphic' stdDeviation='0.35' result='blur' />
+          <feDisplacementMap
+            in='blur'
+            in2='map'
+            scale='18'
+            xChannelSelector='R'
+            yChannelSelector='G'
+          />
+        </filter>
+      </svg>
       <motion.div
         ref={dockRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         onTouchEnd={handleTouchEnd}
         className={cn(
-          'mx-auto flex w-fit gap-4 rounded-2xl bg-gray-100 px-4 dark:bg-neutral-900',
+          'dock-liquid-shell mx-auto flex w-fit gap-4 rounded-full px-5',
           className
         )}
         style={{ height: panelHeight }}
         role='toolbar'
         aria-label='Application dock'
       >
+        <span className='dock-liquid-lens' aria-hidden='true' />
         <DockProvider value={{ mouseX, spring, distance, magnification }}>
           {children}
         </DockProvider>
@@ -214,7 +238,7 @@ function DockLabel({ children, className, ...rest }: DockLabelProps) {
           exit={{ opacity: 0, y: 0 }}
           transition={{ duration: 0.2 }}
           className={cn(
-            'absolute -top-6 left-1/2 w-fit whitespace-pre rounded-md border border-gray-200 bg-gray-100 px-2 py-0.5 text-xs text-neutral-700 dark:border-neutral-900 dark:bg-neutral-800 dark:text-white',
+            'absolute -top-6 left-1/2 w-fit whitespace-pre rounded-full border px-2.5 py-0.5 text-xs backdrop-blur-[5px] backdrop-saturate-[200%] bg-gradient-to-b from-white/30 to-white/[0.1] border-white/40 text-neutral-700 shadow-[inset_0_1px_0.5px_rgba(255,255,255,0.95),0_0_0_0.5px_rgba(0,0,0,0.05),0_4px_12px_rgba(0,0,0,0.1)] dark:from-white/[0.10] dark:to-white/[0.02] dark:border-white/20 dark:text-white dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.3),0_2px_8px_rgba(0,0,0,0.4)]',
             className
           )}
           role='tooltip'

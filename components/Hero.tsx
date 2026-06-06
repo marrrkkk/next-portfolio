@@ -24,6 +24,8 @@ const Hero = () => {
               className="float-start"
               height={70}
               width={70}
+              loading="eager"
+              priority
             />
           </BoxReveal>
           <div>
