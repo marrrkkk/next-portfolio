@@ -26,11 +26,8 @@ const Nav = () => {
   const isExternal = (href: string) =>
     href.startsWith("http") || href.startsWith("mailto:");
 
-  const glassItem =
-    "dock-liquid-item aspect-square rounded-full";
-
-  const glassItemMobile =
-    "w-8 h-8 rounded-full bg-gradient-to-b from-white/70 to-white/40 dark:from-white/[0.18] dark:to-white/[0.08] backdrop-blur-sm backdrop-saturate-200 border border-white/80 dark:border-white/[0.3] shadow-[inset_0_0.5px_0_rgba(255,255,255,0.9),inset_0_-0.5px_0_rgba(0,0,0,0.05)] dark:shadow-[inset_0_0.5px_0_rgba(255,255,255,0.25),inset_0_-0.5px_0_rgba(0,0,0,0.4)] flex items-center justify-center";
+  const dockItemClass =
+    "aspect-square rounded-full bg-gray-200 dark:bg-neutral-800";
 
   return (
     <>
@@ -41,8 +38,9 @@ const Nav = () => {
             item.title === "Theme" ? (
               <DockItem
                 key={index}
-                className={glassItem}
+                className={dockItemClass}
                 onClick={toggleTheme}
+                aria-label="Toggle Theme"
               >
                 <DockLabel>{item.title}</DockLabel>
                 <DockIcon>
@@ -56,8 +54,9 @@ const Nav = () => {
                 key={index}
                 href={item.href}
                 target={isExternal(item.href) ? "_blank" : "_self"}
+                rel={isExternal(item.href) ? "noopener noreferrer" : undefined}
               >
-                <DockItem className={glassItem}>
+                <DockItem className={dockItemClass}>
                   <DockLabel>{item.title}</DockLabel>
                   <DockIcon>{item.icon}</DockIcon>
                 </DockItem>
@@ -72,7 +71,7 @@ const Nav = () => {
         {/* Toggle Button */}
         <motion.button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="w-11 h-11 rounded-full bg-gradient-to-b from-white/60 to-white/30 dark:from-white/[0.14] dark:to-white/[0.06] backdrop-blur-md backdrop-saturate-200 border border-white/70 dark:border-white/[0.25] flex items-center justify-center shadow-[inset_0_0.5px_0_rgba(255,255,255,0.8),0_4px_24px_rgba(0,0,0,0.1)] dark:shadow-[inset_0_0.5px_0_rgba(255,255,255,0.2),0_4px_24px_rgba(0,0,0,0.4)]"
+          className="w-11 h-11 rounded-full bg-gray-100 dark:bg-neutral-900 border border-gray-200 dark:border-neutral-800 flex items-center justify-center shadow-sm"
           whileTap={{ scale: 0.9 }}
           aria-label="Toggle navigation menu"
         >
@@ -109,7 +108,7 @@ const Nav = () => {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: -10 }}
               transition={{ duration: 0.2, ease: "easeOut" }}
-              className="absolute top-14 right-0 bg-gradient-to-b from-white/60 to-white/30 dark:from-white/[0.14] dark:to-white/[0.06] backdrop-blur-md backdrop-saturate-200 border border-white/70 dark:border-white/[0.25] rounded-2xl p-3 shadow-[inset_0_0.5px_0_rgba(255,255,255,0.8),0_4px_24px_rgba(0,0,0,0.1)] dark:shadow-[inset_0_0.5px_0_rgba(255,255,255,0.2),0_4px_24px_rgba(0,0,0,0.4)] min-w-[160px]"
+              className="absolute top-14 right-0 bg-gray-100 dark:bg-neutral-900 border border-gray-200 dark:border-neutral-800 rounded-2xl p-3 shadow-md min-w-[160px]"
             >
               <div className="flex flex-col gap-1">
                 {links.map((item, index) =>
@@ -123,9 +122,10 @@ const Nav = () => {
                         toggleTheme();
                         setMobileOpen(false);
                       }}
-                      className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-white/30 dark:hover:bg-white/[0.08] transition-colors"
+                      className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-gray-200 dark:hover:bg-neutral-800 transition-colors"
+                      aria-label="Toggle Theme"
                     >
-                      <span className={glassItemMobile}>
+                      <span className="w-8 h-8 rounded-full bg-gray-200 dark:bg-neutral-800 flex items-center justify-center">
                         {mounted && theme === "dark"
                           ? React.createElement(Sun, { size: 16 })
                           : React.createElement(Moon, { size: 16 })}
@@ -142,10 +142,11 @@ const Nav = () => {
                       <Link
                         href={item.href}
                         target={isExternal(item.href) ? "_blank" : "_self"}
+                        rel={isExternal(item.href) ? "noopener noreferrer" : undefined}
                         onClick={() => setMobileOpen(false)}
-                        className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-white/30 dark:hover:bg-white/[0.08] transition-colors"
+                        className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-gray-200 dark:hover:bg-neutral-800 transition-colors"
                       >
-                        <span className={glassItemMobile}>
+                        <span className="w-8 h-8 rounded-full bg-gray-200 dark:bg-neutral-800 flex items-center justify-center">
                           {React.cloneElement(
                             item.icon as React.ReactElement<{ size?: number }>,
                             { size: 16 }
