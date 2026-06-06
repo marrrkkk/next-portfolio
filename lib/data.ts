@@ -1,5 +1,5 @@
 import React from "react";
-import { Activity, HomeIcon, Mail, ScrollText, SunMoon } from "lucide-react";
+import { HomeIcon, FolderOpen, Github, Linkedin, ScrollText, Mail, Sun, Moon } from "lucide-react";
 
 export const links = [
   {
@@ -8,9 +8,19 @@ export const links = [
     href: "#",
   },
   {
-    title: "Activity",
-    icon: React.createElement(Activity),
-    href: "https://wakatime.com/@marrkkk",
+    title: "Projects",
+    icon: React.createElement(FolderOpen),
+    href: "#projects",
+  },
+  {
+    title: "GitHub",
+    icon: React.createElement(Github),
+    href: "https://github.com/marrrkkk",
+  },
+  {
+    title: "LinkedIn",
+    icon: React.createElement(Linkedin),
+    href: "https://www.linkedin.com/in/mark-louie-alvarez-b90162257/",
   },
   {
     title: "Resume",
@@ -24,7 +34,7 @@ export const links = [
   },
   {
     title: "Theme",
-    icon: React.createElement(SunMoon),
+    icon: React.createElement(Sun),
     href: "#",
   },
 ];
@@ -49,10 +59,10 @@ export const techs = [
     color: "#0ea5e933",
   },
   {
-    name: "Figma",
-    description: "Design Tool",
-    icon: "/figma.svg",
-    color: "#0acf8333",
+    name: "Claude Code",
+    description: "AI Agent",
+    icon: "/claude.svg",
+    color: "#d4783733",
   },
   {
     name: "Supabase",
