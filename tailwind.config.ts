@@ -78,9 +78,9 @@ const config: Config = {
   			sm: 'calc(var(--radius) - 4px)'
   		},
   		fontFamily: {
-  			regular: ["SFProRegular", "sans-serif"],
-  			medium: ["SFProMedium", "sans-serif"],
-  			bold: ["SFProBold", "sans-serif"]
+  			regular: ["var(--font-regular)", "sans-serif"],
+  			medium: ["var(--font-medium)", "sans-serif"],
+  			bold: ["var(--font-bold)", "sans-serif"]
   		},
   		animation: {
   			rainbow: 'rainbow var(--speed, 2s) infinite linear',
