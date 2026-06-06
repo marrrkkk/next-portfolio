@@ -104,26 +104,30 @@ export const experience = [
 export const projects = [
   {
     title: "Upclass",
-    tech: "Nextjs, Supabase",
-    image: '/projects/01.webp',
-    url: 'https://upclass.xyz/'
+    description: "A modern classroom management platform for educators and students.",
+    tech: ["Next.js", "Supabase"],
+    image: "/projects/01.webp",
+    url: "https://upclass.xyz/",
   },
   {
     title: "Saas Landing Page",
-    tech: "Nextjs, Shadcn",
-    image: '/projects/02.webp',
-    url: 'https://saas-landing-page-mark.vercel.app/'
+    description: "A polished, conversion-focused landing page template for SaaS products.",
+    tech: ["Next.js", "Shadcn"],
+    image: "/projects/02.webp",
+    url: "https://saas-landing-page-mark.vercel.app/",
   },
   {
     title: "Github Card Generator",
-    tech: "Nextjs, Github API",
-    image: '/projects/03.webp',
-    url: 'https://github-stats-card-generator.vercel.app/'
+    description: "Generate and customize beautiful GitHub profile stat cards.",
+    tech: ["Next.js", "GitHub API"],
+    image: "/projects/03.webp",
+    url: "https://github-stats-card-generator.vercel.app/",
   },
   {
     title: "NoteMe",
-    tech: "Nexjs, Clerk",
-    image: '/projects/04.webp',
-    url: 'https://notemelink.vercel.app/'
+    description: "A minimal note-taking app with authentication and real-time sync.",
+    tech: ["Next.js", "Clerk"],
+    image: "/projects/04.webp",
+    url: "https://notemelink.vercel.app/",
   },
 ];
