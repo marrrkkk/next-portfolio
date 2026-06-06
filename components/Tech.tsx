@@ -19,7 +19,7 @@ const Tech = () => {
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {techs.map((tech, index) => (
           <motion.div
-            className="group relative dark:bg-neutral-900/80 bg-neutral-100 rounded-xl p-4 flex flex-col items-center text-center space-y-3 border border-transparent hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors duration-300"
+            className="group relative dark:bg-neutral-900/80 bg-neutral-100 rounded-xl p-4 flex flex-col items-center text-center space-y-3 transition-colors duration-300"
             key={index}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
