@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import StructuredData from "@/components/StructuredData";
+import SmoothScroll from "@/components/SmoothScroll";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://your-portfolio-domain.com";
 
@@ -86,10 +87,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className="flex flex-col justify-center items-center font-regular">
         <StructuredData />
         <ThemeProvider attribute="class" defaultTheme="dark">
+          <SmoothScroll />
           {children}
         </ThemeProvider>
       </body>
