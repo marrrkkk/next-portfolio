@@ -9,7 +9,7 @@ const Footer = () => {
         <p className="text-zinc-500">Need a Developer?</p>
         <h1 className="font-bold text-4xl mb-5">Let&apos;s Work Together</h1>
         <RainbowButton asChild>
-          <Link href="mailto:marklouie.dev@gmail.com">Hire Me</Link>
+          <Link href="mailto:marklouie.dev@gmail.com">Contact Me</Link>
         </RainbowButton>
       </div>
       <div className="ml-10 mb-5 text-zinc-500 text-sm">

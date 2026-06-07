@@ -11,7 +11,7 @@ const Tech = () => {
         className="font-medium text-3xl mb-10"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
         viewport={{ once: true, amount: 0.5 }}
       >
         My Technologies
@@ -25,7 +25,7 @@ const Tech = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{
               delay: index * 0.1,
-              duration: 0.5,
+              duration: 0.3,
               ease: [0.25, 0.46, 0.45, 0.94],
             }}
             viewport={{ once: true, amount: 0.2 }}
