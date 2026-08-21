@@ -20,9 +20,28 @@ export async function generateMetadata({
     return { title: data.site.title };
   }
 
+  const title = `${work.name} - ${data.site.name}`;
+  const description = work.longDescription ?? work.description;
+  const canonical = `/work/${work.id}`;
+
   return {
-    title: `${work.name} — ${data.site.name}`,
-    description: work.longDescription ?? work.description,
+    title: { absolute: title },
+    description,
+    alternates: { canonical },
+    openGraph: {
+      type: "article",
+      url: canonical,
+      title,
+      description,
+      siteName: data.site.name,
+      images: [{ url: work.image, alt: `${work.name} project preview` }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [work.image],
+    },
   };
 }
 
