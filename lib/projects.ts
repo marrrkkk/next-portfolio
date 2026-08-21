@@ -1,9 +1,9 @@
 import data from "@/data.json";
 
-export type Project = (typeof data.projects.items)[number];
+export type Work = (typeof data.work.items)[number];
 
-export const PROJECTS: Project[] = data.projects.items;
+export const WORK: Work[] = data.work.items;
 
-export function getProject(id: string): Project | undefined {
-  return PROJECTS.find((project) => project.id === id);
+export function getWork(id: string): Work | undefined {
+  return WORK.find((work) => work.id === id);
 }
