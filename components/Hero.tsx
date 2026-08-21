@@ -21,7 +21,12 @@ export function Hero() {
       <Reveal id="home-hero-actions" delay={0.12} className="relative z-10 w-fit">
         <div className="mt-[36px] flex items-center gap-[8px]">
           <ContactButton id="hero-contact" />
-          <a href={hero.resumeLink} className="inline-flex h-[36px] items-center rounded-[8px] bg-[#f1f1f1] px-[20px] text-[15px] font-semibold text-[#141414] transition-colors hover:bg-[#e7e7e7]">
+          <a
+            href={hero.resumeLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex h-[36px] items-center rounded-[8px] bg-[#f1f1f1] px-[20px] text-[15px] font-semibold text-[#141414] transition-colors hover:bg-[#e7e7e7]"
+          >
             {hero.resumeLabel}
           </a>
         </div>
