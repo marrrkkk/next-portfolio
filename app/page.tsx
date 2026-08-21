@@ -1,31 +1,46 @@
-import Hero from "@/components/Hero";
-import About from "@/components/About";
-import Nav from "@/components/Nav";
-import dynamic from "next/dynamic";
+"use client";
 
-const Skills = dynamic(() => import("@/components/Tech"), {
-  loading: () => <div className="mt-40 xl:w-[45%] md:w-[70%] w-[80%] h-64" />,
-});
-const Experience = dynamic(() => import("@/components/Experience"), {
-  loading: () => <div className="mt-20 xl:w-[45%] md:w-[70%] w-[80%] h-64" />,
-});
-const Projects = dynamic(() => import("@/components/Projects"), {
-  loading: () => <div className="mt-20 xl:w-[45%] md:w-[70%] w-[80%] h-64" />,
-});
-const Footer = dynamic(() => import("@/components/Footer"));
+import { Experience } from "@/components/experience";
+import { GithubContributions } from "@/components/github-contributions";
+import { Hero } from "@/components/hero";
+import { Projects } from "@/components/projects";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
+import { Skills } from "@/components/skills";
+import { useCallback, useEffect, useState } from "react";
 
-const Home = () => {
+export default function Home() {
+  const [isGameActive, setIsGameActive] = useState(false);
+
+  const handlePlayGame = useCallback(() => setIsGameActive(true), []);
+  const handleExitGame = useCallback(() => setIsGameActive(false), []);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("play") !== "1") return;
+    setIsGameActive(true);
+    window.history.replaceState(null, "", "/");
+  }, []);
+
   return (
-    <main className="flex flex-col justify-center items-center">
-      <Nav />
-      <Hero />
-      <About />
-      <Skills />
-      <Experience />
-      <Projects />
-      <Footer />
-    </main>
+    <div className="min-h-screen bg-[#fafafa] font-sans text-[#141414]">
+      <div className="mx-auto w-full max-w-[964px] px-6 pt-[30px] pb-[20px] sm:pb-[28px]">
+        <SiteHeader />
+        <main className="mt-[106px]">
+          <Hero />
+          <Projects />
+          <Experience />
+          <Skills />
+          <GithubContributions
+            isGameActive={isGameActive}
+            onExitGame={handleExitGame}
+          />
+        </main>
+        <SiteFooter
+          isGameActive={isGameActive}
+          onPlayGame={handlePlayGame}
+        />
+      </div>
+    </div>
   );
-};
-
-export default Home;
+}
