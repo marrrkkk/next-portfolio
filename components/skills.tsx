@@ -1,5 +1,6 @@
 import data from "@/data.json";
 import { Reveal } from "@/components/reveal";
+import Image from "next/image";
 import type { SVGProps } from "react";
 
 type SkillIconData = {
@@ -9,7 +10,20 @@ type SkillIconData = {
   paths: string[];
 };
 
-function SkillIcon({ icon }: { icon: SkillIconData }) {
+function SkillIcon({ icon }: { icon: SkillIconData | string }) {
+  if (typeof icon === "string") {
+    return (
+      <Image
+        src={icon}
+        alt=""
+        aria-hidden="true"
+        width={16}
+        height={16}
+        className="h-[16px] w-[16px] shrink-0"
+      />
+    );
+  }
+
   const svgProps: SVGProps<SVGSVGElement> = {
     viewBox: icon.viewBox,
     fill: icon.fill,
@@ -36,7 +50,7 @@ export function Skills() {
             key={name}
             className="inline-flex items-center gap-[8px] rounded-full bg-[#f1f1f1] px-[16px] py-[9px] text-[15px] font-medium text-[#141414] transition-colors hover:bg-[#e7e7e7]"
           >
-            <SkillIcon icon={icon as SkillIconData} />
+            <SkillIcon icon={icon as SkillIconData | string} />
             <span>{name}</span>
           </div>
         ))}
