@@ -1,6 +1,6 @@
 "use client";
 
-import { PROJECTS } from "@/lib/projects";
+import { WORK } from "@/lib/projects";
 import {
   AnimatePresence,
   LayoutGroup,
@@ -55,7 +55,7 @@ export function ProjectsNavDesktop({
       {visible ? (
         <motion.aside
           key="projects-nav-desktop"
-          aria-label="Projects"
+          aria-label="Work"
           initial={reduce ? false : { opacity: 0, x: -18, scale: 0.985, filter: "blur(5px)" }}
           animate={{ opacity: 1, x: 0, scale: 1, filter: "blur(0px)" }}
           exit={reduce ? undefined : { opacity: 0, x: -12, scale: 0.99, filter: "blur(3px)" }}
@@ -65,7 +65,7 @@ export function ProjectsNavDesktop({
           <div className="pointer-events-auto">
             <LayoutGroup id="projects-nav-desktop">
               <ul>
-                {PROJECTS.map((project, index) => {
+                {WORK.map((project, index) => {
                   const active = project.id === activeId;
 
                   return (
@@ -100,7 +100,7 @@ export function ProjectsNavDesktop({
                         </motion.span>
                       </button>
 
-                      {index < PROJECTS.length - 1 ? (
+                      {index < WORK.length - 1 ? (
                         <div
                           aria-hidden="true"
                           className="grid h-[11px] grid-cols-[35px_1fr]"

@@ -1,13 +1,13 @@
 "use client";
 
 import { GithubIcon } from "@/components/github-icon";
-import type { Project } from "@/lib/projects";
+import type { Work } from "@/lib/projects";
 import { ArrowUpRight, Globe, X } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
-export function ProjectOpenMenu({ project }: { project: Project }) {
+export function ProjectOpenMenu({ project }: { project: Work }) {
   const [open, setOpen] = useState(false);
   const reduceMotion = useReducedMotion() ?? false;
   const titleId = useId();

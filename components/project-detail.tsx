@@ -2,12 +2,12 @@ import { ProjectOpenMenu } from "@/components/project-open-menu";
 import { ProjectPreview } from "@/components/project-preview";
 import { Reveal } from "@/components/reveal";
 import { SiteFooter } from "@/components/site-footer";
-import type { Project } from "@/lib/projects";
+import type { Work } from "@/lib/projects";
 import { Undo2 } from "lucide-react";
 import Link from "next/link";
 import data from "@/data.json";
 
-export function ProjectDetail({ project }: { project: Project }) {
+export function ProjectDetail({ project }: { project: Work }) {
   return (
     <div className="min-h-screen bg-white font-sans text-[#141414]">
       <div className="mx-auto flex min-h-screen w-full max-w-[964px] flex-col px-6 pt-[30px] pb-[20px] sm:pb-[28px]">
@@ -18,7 +18,7 @@ export function ProjectDetail({ project }: { project: Project }) {
             className="inline-flex h-[36px] min-w-[44px] cursor-pointer items-center justify-center gap-[8px] rounded-[8px] bg-[#efefef] px-[16px] text-[15px] font-semibold text-[#141414] transition-colors hover:bg-[#e7e7e7] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#141414]"
           >
             <Undo2 size={15} strokeWidth={2} aria-hidden="true" />
-            {data.projects.returnLabel}
+            {data.work.returnLabel}
           </Link>
           <ProjectOpenMenu project={project} />
         </header>
@@ -54,7 +54,7 @@ export function ProjectDetail({ project }: { project: Project }) {
 
           <Reveal id={`project-${project.id}-preview`} amount={0.12}>
           <div className="mx-auto mt-[58px] max-w-[680px] overflow-hidden rounded-[10px] bg-[#f3f3f3]">
-            <ProjectPreview accent={project.accent} />
+            <ProjectPreview image={project.image} alt={`${project.name} preview`} />
           </div>
           </Reveal>
         </main>

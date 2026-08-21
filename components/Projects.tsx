@@ -3,7 +3,7 @@
 import { ProjectPreview } from "@/components/project-preview";
 import { ProjectsNavDesktop } from "@/components/projects-nav";
 import { Reveal } from "@/components/reveal";
-import { PROJECTS, type Project } from "@/lib/projects";
+import { WORK, type Work } from "@/lib/projects";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -13,7 +13,7 @@ import data from "@/data.json";
 const HEADER_OFFSET = 88;
 
 export function Projects() {
-  const [activeId, setActiveId] = useState(PROJECTS[0].id);
+  const [activeId, setActiveId] = useState(WORK[0].id);
   const [navVisible, setNavVisible] = useState(false);
   const sectionRef = useRef<HTMLElement | null>(null);
   const itemRefs = useRef(new Map<string, HTMLElement>());
@@ -48,7 +48,7 @@ export function Projects() {
       let closestDistance = Number.POSITIVE_INFINITY;
       const focusLine = Math.min(window.innerHeight * 0.38, 300);
 
-      for (const project of PROJECTS) {
+      for (const project of WORK) {
         const node = itemRefs.current.get(project.id);
         if (!node) continue;
 
@@ -111,14 +111,14 @@ export function Projects() {
       id="work"
       className="relative mt-[64px] scroll-mt-[88px] sm:mt-[100px]"
     >
-      <h2 className="sr-only">{data.projects.heading}</h2>
+      <h2 className="sr-only">{data.work.heading}</h2>
       <ProjectsNavDesktop
         activeId={activeId}
         visible={navVisible}
         onSelect={handleSelect}
       />
       <div className="flex flex-col gap-[40px] sm:gap-[56px]">
-        {PROJECTS.map((project) => (
+        {WORK.map((project) => (
           <ProjectListItem
             key={project.id}
             project={project}
@@ -137,16 +137,16 @@ function ProjectListItem({
   project,
   onNode,
 }: {
-  project: Project;
+  project: Work;
   onNode: (node: HTMLElement | null) => void;
 }) {
   return (
     <article ref={onNode} id={project.id} className="scroll-mt-[88px]">
       <Reveal id={`home-${project.id}`} amount={0.12}>
-        <Link href={`/projects/${project.id}`} className="group block w-full text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#141414]">
+        <Link href={`/work/${project.id}`} className="group block w-full text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#141414]">
         {/* Preview bleeds off the bottom edge, like a cropped screenshot. */}
-        <div className="overflow-hidden rounded-[16px] bg-[#f1f1f1] px-[12px] pt-[12px] transition-colors group-hover:bg-[#ececec] sm:px-[20px] sm:pt-[20px]">
-          <ProjectPreview accent={project.accent} />
+        <div className="rounded-[16px] transition-colors group-hover:bg-[#ececec]">
+          <ProjectPreview image={project.image} alt={`${project.name} preview`} />
         </div>
         <div className="mt-[14px] flex flex-wrap items-baseline justify-between gap-x-[16px] gap-y-[4px]">
           <div className="flex flex-wrap items-baseline gap-x-[8px] gap-y-[2px]">
@@ -158,7 +158,7 @@ function ProjectListItem({
             </p>
           </div>
           <span className="inline-flex items-center gap-[4px] text-[15px] font-semibold text-[#7a7a7a] transition-colors group-hover:text-[#141414]">
-            {data.projects.viewProjectLabel}
+            {data.work.viewWorkLabel}
             <ArrowUpRight size={14} strokeWidth={2} aria-hidden="true" />
           </span>
         </div>
