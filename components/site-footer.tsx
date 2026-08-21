@@ -10,6 +10,14 @@ type FooterProps = {
   isGameActive?: boolean;
 };
 
+const SOCIAL_LINKS = [
+  { label: "Email", href: "mailto:hello@example.com" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/username", external: true },
+  { label: "GitHub", href: "https://github.com/marrrkkk", external: true },
+] as const;
+
+const SOCIAL_LINK_CLASS = "transition-colors hover:text-[#141414]";
+
 export function SiteFooter({ onPlayGame, isGameActive }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
@@ -47,28 +55,17 @@ export function SiteFooter({ onPlayGame, isGameActive }: FooterProps) {
 
             {/* Right: Social links */}
             <div className="flex items-center gap-[20px] text-[14px] font-medium text-[#7a7a7a]">
-              <a
-                href="mailto:hello@example.com"
-                className="transition-colors hover:text-[#141414]"
-              >
-                Email
-              </a>
-              <a
-                href="https://www.linkedin.com/in/username"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-colors hover:text-[#141414]"
-              >
-                LinkedIn
-              </a>
-              <a
-                href="https://github.com/marrrkkk"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-colors hover:text-[#141414]"
-              >
-                GitHub
-              </a>
+              {SOCIAL_LINKS.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target={"external" in link ? "_blank" : undefined}
+                  rel={"external" in link ? "noopener noreferrer" : undefined}
+                  className={SOCIAL_LINK_CLASS}
+                >
+                  {link.label}
+                </a>
+              ))}
             </div>
           </div>
           </footer>

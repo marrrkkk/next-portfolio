@@ -18,6 +18,12 @@ const SHIP_MARGIN = 16;
 const SHIP_PARTICLES = 14;
 const NOMINAL_FRAME_MS = 1000 / 60;
 const MAX_FRAME_MS = 50;
+const CANVAS_CLASS =
+  "pointer-events-none absolute -top-2 left-0 z-20 h-[calc(100%+70px)] w-full";
+
+function clampShipX(x: number, max: number) {
+  return Math.max(SHIP_MARGIN, Math.min(max, x));
+}
 
 type Bullet = {
   x: number;
@@ -301,10 +307,7 @@ export function ContributionGame({
       const touch = e.touches[0];
       const dx = touch.clientX - touchStartXRef.current;
       setShipPosition(
-        Math.max(
-          SHIP_MARGIN,
-          Math.min(shipMaxXRef.current, touchShipStartXRef.current + dx)
-        )
+        clampShipX(touchShipStartXRef.current + dx, shipMaxXRef.current),
       );
     };
 
@@ -329,10 +332,17 @@ export function ContributionGame({
       const frameScale = delta / NOMINAL_FRAME_MS;
 
       if (keys.left) {
-        setShipPosition(Math.max(SHIP_MARGIN, shipXRef.current - MOVE_SPEED * frameScale));
+        setShipPosition(
+          Math.max(SHIP_MARGIN, shipXRef.current - MOVE_SPEED * frameScale),
+        );
       }
       if (keys.right) {
-        setShipPosition(Math.min(shipMaxXRef.current, shipXRef.current + MOVE_SPEED * frameScale));
+        setShipPosition(
+          Math.min(
+            shipMaxXRef.current,
+            shipXRef.current + MOVE_SPEED * frameScale,
+          ),
+        );
       }
 
       const ctx2 = ctxRef.current;
@@ -450,7 +460,7 @@ export function ContributionGame({
     <>
       <canvas
         ref={canvasRef}
-        className="pointer-events-none absolute -top-2 left-0 z-20 h-[calc(100%+70px)] w-full"
+        className={CANVAS_CLASS}
       />
       <div
         ref={shipRef}

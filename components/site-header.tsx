@@ -5,6 +5,7 @@ import { Inbox, Layers, Pencil } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import Image from "next/image";
 import data from "@/data.json";
+import { cn } from "@/lib/utils";
 import {
   AnimatePresence,
   motion,
@@ -65,6 +66,19 @@ const SCROLL_RANGE = 120;
 // (12px offset + 45px header + a few px of slack), not the viewport edge.
 const HERO_CONTACT_ROOT_MARGIN = "-72px 0px 0px 0px";
 const HERO_CONTACT_HIDE_AT = 72;
+const HEADER_GAP = "gap-[7px]";
+const NAV_ITEM_TRANSITION = {
+  type: "spring" as const,
+  stiffness: 650,
+  damping: 38,
+  mass: 0.5,
+};
+const NAV_ITEM_CLASS =
+  "flex items-center px-[15px] py-[9px] text-[14px] leading-none";
+const NAV_ACTIVE_CLASS =
+  "gap-[6px] rounded-md bg-white font-semibold text-[#141414] shadow-[0_1px_2px_rgba(0,0,0,0.08),0_0_0_0.5px_rgba(0,0,0,0.05)]";
+const NAV_INACTIVE_CLASS =
+  "rounded-full font-medium text-[#7a7a7a] transition-colors hover:text-[#141414]";
 
 export function SiteHeader() {
   // `useReducedMotion()` can be null before the media query resolves; treat only
@@ -201,7 +215,7 @@ export function SiteHeader() {
     // the tab above page content (including the hero contact shell at z-20) so
     // the trigger never paints over the nav as it scrolls past.
     <header className="sticky top-3 z-30 flex items-center justify-between gap-3">
-      <div className="flex items-center gap-[7px]">
+      <div className={`flex items-center ${HEADER_GAP}`}>
         {/* Avatar: fixed 45px circle that fades out as the tab covers it. `fill`
             requires the wrapper to be positioned (`relative`). */}
         <motion.div
@@ -225,11 +239,7 @@ export function SiteHeader() {
             the avatar as it slides across. */}
         <motion.nav
           layout
-          transition={
-            reduce
-              ? { duration: 0 }
-              : { type: "spring", stiffness: 650, damping: 38, mass: 0.5 }
-          }
+          transition={reduce ? { duration: 0 } : NAV_ITEM_TRANSITION}
           style={{
             x: navX,
             position: "relative",
@@ -248,16 +258,11 @@ export function SiteHeader() {
                 href={href}
                 aria-current={current ? "location" : undefined}
                 onClick={(event) => handleNavClick(event, href)}
-                transition={
-                  reduce
-                    ? { duration: 0 }
-                    : { type: "spring", stiffness: 650, damping: 38, mass: 0.5 }
-                }
-                className={
-                  current
-                    ? "flex items-center gap-[6px] rounded-md bg-white px-[15px] py-[9px] text-[14px] font-semibold leading-none text-[#141414] shadow-[0_1px_2px_rgba(0,0,0,0.08),0_0_0_0.5px_rgba(0,0,0,0.05)]"
-                    : "flex items-center rounded-full px-[15px] py-[9px] text-[14px] font-medium leading-none text-[#7a7a7a] transition-colors hover:text-[#141414]"
-                }
+                transition={reduce ? { duration: 0 } : NAV_ITEM_TRANSITION}
+                className={cn(
+                  NAV_ITEM_CLASS,
+                  current ? NAV_ACTIVE_CLASS : NAV_INACTIVE_CLASS,
+                )}
               >
                 {current ? (
                   <motion.span

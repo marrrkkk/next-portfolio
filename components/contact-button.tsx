@@ -30,6 +30,12 @@ import { createPortal } from "react-dom";
 const SHELL_ID = "contact-shell";
 
 const SHELL_BG = "bg-[#1a1a1a]";
+const TRIGGER_HEIGHT = "h-[36px]";
+const TRIGGER_TEXT = "text-[15px] font-semibold";
+const TRIGGER_GAP = "gap-[6px]";
+const TRIGGER_PADDING = "px-[20px]";
+const CARD_WIDTH = "w-[min(360px,calc(100vw-48px))] shrink-0";
+const ICON_BUTTON = "inline-flex h-[26px] w-[26px] shrink-0 cursor-pointer items-center justify-center rounded-full";
 const BUTTON_RADIUS = 8;
 const CARD_RADIUS = 18;
 
@@ -214,7 +220,7 @@ export function ContactButton({
     }
   }, [open]);
 
-  const triggerPad = compact ? "px-[11px] sm:px-[20px]" : "px-[20px]";
+  const triggerPad = compact ? "px-[11px] sm:px-[20px]" : TRIGGER_PADDING;
   const labelClass = compact ? "sr-only sm:not-sr-only" : undefined;
 
   return (
@@ -222,7 +228,7 @@ export function ContactButton({
       {/* Holds the trigger's footprint so the hero row never shifts mid-morph. */}
       <span
         aria-hidden="true"
-        className={`invisible inline-flex h-[36px] items-center gap-[6px] ${triggerPad} text-[15px] font-semibold`}
+        className={`invisible inline-flex ${TRIGGER_HEIGHT} items-center ${TRIGGER_GAP} ${triggerPad} ${TRIGGER_TEXT}`}
       >
         <Send size={14} strokeWidth={2} />
         <span className={compact ? "hidden sm:inline" : undefined}>{data.contact.buttonLabel}</span>
@@ -279,7 +285,7 @@ export function ContactButton({
               role="dialog"
               aria-modal="true"
               aria-labelledby={titleId}
-              className="w-[min(360px,calc(100vw-48px))] shrink-0"
+              className={CARD_WIDTH}
             >
               <div className="p-[18px]">
                 <motion.div
@@ -302,7 +308,7 @@ export function ContactButton({
                     type="button"
                     onClick={() => setOpen(false)}
                     aria-label="Close contact card"
-                    className="-mt-[2px] -mr-[2px] inline-flex h-[26px] w-[26px] shrink-0 cursor-pointer items-center justify-center rounded-full text-white/55 transition-colors hover:bg-white/10 hover:text-white"
+                    className={`${ICON_BUTTON} -mt-[2px] -mr-[2px] text-white/55 transition-colors hover:bg-white/10 hover:text-white`}
                   >
                     <X size={14} strokeWidth={2} aria-hidden="true" />
                   </button>
@@ -363,7 +369,7 @@ export function ContactButton({
                 aria-label="Contact"
                 // Inset focus ring: the shell clips overflow, so an outline sitting
                 // outside the border box would be cut off.
-                className={`inline-flex h-[36px] cursor-pointer items-center justify-center gap-[6px] ${triggerPad} text-[15px] font-semibold text-white transition-colors hover:bg-[#333] focus-visible:-outline-offset-2 focus-visible:outline-2 focus-visible:outline-white/70`}
+                className={`inline-flex ${TRIGGER_HEIGHT} cursor-pointer items-center justify-center ${TRIGGER_GAP} ${triggerPad} ${TRIGGER_TEXT} text-white transition-colors hover:bg-[#333] focus-visible:-outline-offset-2 focus-visible:outline-2 focus-visible:outline-white/70`}
               >
                 <motion.span
                   variants={label}

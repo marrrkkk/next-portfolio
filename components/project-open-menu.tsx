@@ -4,8 +4,19 @@ import { GithubIcon } from "@/components/github-icon";
 import type { Work } from "@/lib/projects";
 import { ArrowUpRight, Globe, X } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
+
+const ACTION_LINK_CLASS =
+  "group flex items-center gap-2 rounded-[9px] px-2 py-2 transition-colors hover:bg-white/10";
+const ACTION_ICON_CLASS =
+  "inline-flex h-7 w-7 items-center justify-center rounded-[8px] bg-white/10";
+
+type ActionItem = {
+  href: string;
+  label: string;
+  icon: ReactNode;
+};
 
 export function ProjectOpenMenu({ project }: { project: Work }) {
   const [open, setOpen] = useState(false);
@@ -14,6 +25,20 @@ export function ProjectOpenMenu({ project }: { project: Work }) {
   const triggerRef = useRef<HTMLButtonElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const wasOpen = useRef(false);
+  const actions: ActionItem[] = [
+    ...(project.live
+      ? [{
+          href: project.link,
+          label: "Live site",
+          icon: <Globe size={14} strokeWidth={2} aria-hidden="true" />,
+        }]
+      : []),
+    {
+      href: project.github,
+      label: "GitHub",
+      icon: <GithubIcon className="h-[14px] w-[14px]" />,
+    },
+  ];
 
   useEffect(() => {
     if (!open) return;
@@ -95,18 +120,19 @@ export function ProjectOpenMenu({ project }: { project: Work }) {
               </div>
 
               <div className="mt-3 flex flex-col gap-1">
-                {project.live ? (
-                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-2 rounded-[9px] px-2 py-2 transition-colors hover:bg-white/10">
-                    <span className="inline-flex h-7 w-7 items-center justify-center rounded-[8px] bg-white/10"><Globe size={14} strokeWidth={2} aria-hidden="true" /></span>
-                    <span className="text-[13px] font-medium">Live site</span>
+                {actions.map(({ href, label, icon }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={ACTION_LINK_CLASS}
+                  >
+                    <span className={ACTION_ICON_CLASS}>{icon}</span>
+                    <span className="text-[13px] font-medium">{label}</span>
                     <ArrowUpRight size={14} className="ml-auto text-white/45 transition-colors group-hover:text-white" aria-hidden="true" />
                   </a>
-                ) : null}
-                <a href={project.github} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-2 rounded-[9px] px-2 py-2 transition-colors hover:bg-white/10">
-                  <span className="inline-flex h-7 w-7 items-center justify-center rounded-[8px] bg-white/10"><GithubIcon className="h-[14px] w-[14px]" /></span>
-                  <span className="text-[13px] font-medium">GitHub</span>
-                  <ArrowUpRight size={14} className="ml-auto text-white/45 transition-colors group-hover:text-white" aria-hidden="true" />
-                </a>
+                ))}
               </div>
             </motion.div>
           ) : (

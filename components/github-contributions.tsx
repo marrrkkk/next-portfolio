@@ -4,6 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 import dynamic from "next/dynamic";
 import data from "@/data.json";
+import { cn } from "@/lib/utils";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 const ContributionGame = dynamic(
@@ -35,6 +36,16 @@ const LEVEL_COLORS = [
 
 const HIGH_SCORE_KEY = "space_invader_hi_score";
 const POINTS_PER_CELL = 10;
+const CELL_SIZE_CLASS = "h-[11px] w-[11px] sm:h-[12px] sm:w-[12px] rounded-[2.5px]";
+const GRID_GAP_CLASS = "gap-[3.5px] sm:gap-[4px]";
+
+function groupByWeek(contributions: ContributionDay[]) {
+  const weeks: ContributionDay[][] = [];
+  for (let index = 0; index < contributions.length; index += 7) {
+    weeks.push(contributions.slice(index, index + 7));
+  }
+  return weeks;
+}
 
 function formatDate(dateStr: string) {
   const [year, month, day] = dateStr.split("-").map(Number);
@@ -91,18 +102,7 @@ export function GithubContributions({
         const contribData: ContributionResponse = await res.json();
         const contributions = contribData?.contributions ?? [];
 
-        const groupedWeeks: ContributionDay[][] = [];
-        let currentWeek: ContributionDay[] = [];
-
-        contributions.forEach((day, index) => {
-          currentWeek.push(day);
-          if (currentWeek.length === 7 || index === contributions.length - 1) {
-            groupedWeeks.push(currentWeek);
-            currentWeek = [];
-          }
-        });
-
-        setWeeks(groupedWeeks);
+        setWeeks(groupByWeek(contributions));
       } catch (err) {
         console.error(err);
       }
@@ -197,12 +197,16 @@ export function GithubContributions({
       {/* Main Grid & Game Arena */}
       <div
         ref={containerRef}
-        className={`relative w-full overflow-hidden transition-all duration-300 ${
-          isGameActive ? "pb-[54px]" : "pb-[4px]"
-        }`}
+        className={cn(
+          "relative w-full overflow-hidden transition-all duration-300",
+          isGameActive ? "pb-[54px]" : "pb-[4px]",
+        )}
       >
         <div className="flex w-full justify-center">
-          <div ref={gridWrapperRef} className="relative flex w-max gap-[3.5px] sm:gap-[4px]">
+          <div
+            ref={gridWrapperRef}
+            className={cn("relative flex w-max", GRID_GAP_CLASS)}
+          >
             {/* Canvas and Spaceship, mounted only while the game runs */}
             {isGameActive && (
               <ContributionGame
@@ -216,7 +220,7 @@ export function GithubContributions({
 
             {/* Contribution Columns */}
             {displayedWeeks.map((week, wIndex) => (
-              <div key={wIndex} className="flex flex-col gap-[3.5px] sm:gap-[4px]">
+              <div key={wIndex} className={cn("flex flex-col", GRID_GAP_CLASS)}>
                 {week.map((day) => {
                   const isDestroyed = destroyedBoxes.has(day.date);
                   const title = `${
@@ -233,13 +237,16 @@ export function GithubContributions({
                       title={title}
                       tabIndex={0}
                       aria-label={title}
-                      className={`h-[11px] w-[11px] sm:h-[12px] sm:w-[12px] rounded-[2.5px] transition-all duration-100 ${
+                      className={cn(
+                        CELL_SIZE_CLASS,
+                        "transition-all duration-100",
                         isDestroyed
                           ? "scale-0 opacity-0 pointer-events-none"
-                          : `hover:scale-125 focus:scale-125 focus:outline-none cursor-pointer ${
-                              LEVEL_COLORS[day.level] ?? LEVEL_COLORS[0]
-                            }`
-                      }`}
+                          : [
+                              "hover:scale-125 focus:scale-125 focus:outline-none cursor-pointer",
+                              LEVEL_COLORS[day.level] ?? LEVEL_COLORS[0],
+                            ],
+                      )}
                     />
                   );
                 })}
