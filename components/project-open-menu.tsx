@@ -114,7 +114,7 @@ export function ProjectOpenMenu({ project }: { project: Work }) {
             <motion.div
               key="links"
               layout="position"
-              initial={reduceMotion ? false : { opacity: 0, y: 10, scale: 0.98, filter: "blur(4px)" }}
+              initial={reduceMotion ? false : { opacity: 0, y: 6, scale: 1, filter: "blur(4px)" }}
               animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
               exit={
                 reduceMotion

@@ -160,8 +160,8 @@ export function ContactButton({
   const cardItem: Variants = {
     hidden: {
       opacity: 0,
-      y: reduceMotion ? 0 : 10,
-      scale: reduceMotion ? 1 : 0.98,
+      y: reduceMotion ? 0 : 6,
+      scale: 1,
       filter: reduceMotion ? "blur(0px)" : "blur(4px)",
       // Leaves all at once, quickly, so the contraction isn't dragging content.
       transition: reduceMotion
