@@ -274,7 +274,7 @@ export function ContactButton({
         // z-20 keeps the shell above page content and above the nav tab (z-10)
         // during exit animations. The hero trigger still tucks under the sticky
         // header (z-30) because 20 < 30.
-        className={`absolute top-0 z-20 flex overflow-hidden ${SHELL_BG} ${
+        className={`absolute top-0 z-20 flex ${open ? "overflow-visible" : "overflow-hidden"} ${SHELL_BG} ${
           expandLeft ? "right-0" : "left-0"
         }`}
       >
