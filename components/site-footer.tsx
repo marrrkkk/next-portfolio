@@ -10,11 +10,7 @@ type FooterProps = {
   isGameActive?: boolean;
 };
 
-const SOCIAL_LINKS = [
-  { label: "Email", href: "mailto:hello@example.com" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/username", external: true },
-  { label: "GitHub", href: "https://github.com/marrrkkk", external: true },
-] as const;
+const SOCIAL_LINKS = data.contact.channels;
 
 const SOCIAL_LINK_CLASS = "transition-colors hover:text-[#141414]";
 
