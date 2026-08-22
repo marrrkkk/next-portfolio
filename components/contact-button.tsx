@@ -88,13 +88,15 @@ export function ContactButton({
   const shellTransition: Transition = reduceMotion
     ? { duration: 0 }
     : {
-        layout: { type: "spring", stiffness: 420, damping: 28, mass: 0.8 },
+        layout: open
+          ? { type: "spring", stiffness: 380, damping: 28, mass: 1.2 }
+          : { type: "spring", stiffness: 560, damping: 52, mass: 1.2 },
         // Radius rides along slightly flatter so the corners don't wobble.
         borderRadius: {
           type: "spring",
-          stiffness: 420,
-          damping: 36,
-          mass: 0.8,
+          stiffness: open ? 380 : 560,
+          damping: open ? 34 : 52,
+          mass: 1.2,
         },
       };
 
@@ -136,7 +138,7 @@ export function ContactButton({
       opacity: 0,
       y: reduceMotion ? 0 : -3,
       scale: reduceMotion ? 1 : 0.96,
-      transition: { duration: reduceMotion ? 0.1 : 0.12, ease: EASE_IN },
+      transition: { duration: reduceMotion ? 0.1 : 0.18, ease: EASE_IN },
     },
     visible: {
       opacity: 1,
@@ -145,8 +147,8 @@ export function ContactButton({
       transition: reduceMotion
         ? { duration: 0.12 }
         : {
-            opacity: { duration: 0.18, ease: EASE_OUT },
-            default: { type: "spring", stiffness: 500, damping: 34, mass: 0.6 },
+            opacity: { duration: 0.24, ease: EASE_OUT },
+            default: { type: "spring", stiffness: 420, damping: 36, mass: 0.8 },
           },
     },
   };
@@ -162,7 +164,12 @@ export function ContactButton({
       scale: reduceMotion ? 1 : 0.98,
       filter: reduceMotion ? "blur(0px)" : "blur(4px)",
       // Leaves all at once, quickly, so the contraction isn't dragging content.
-      transition: { duration: reduceMotion ? 0.1 : 0.22, ease: EASE_IN },
+      transition: reduceMotion
+        ? { duration: 0.1 }
+        : {
+            duration: 0.3,
+            filter: { duration: open ? 0.3 : 0.16, ease: EASE_IN },
+          },
     },
     visible: {
       opacity: 1,
@@ -172,9 +179,9 @@ export function ContactButton({
       transition: reduceMotion
         ? { duration: 0.12 }
         : {
-            opacity: { duration: 0.26, ease: EASE_OUT },
-            filter: { duration: 0.26, ease: EASE_OUT },
-            default: { type: "spring", stiffness: 480, damping: 30, mass: 0.7 },
+            opacity: { duration: 0.32, ease: EASE_OUT },
+            filter: { duration: 0.32, ease: EASE_OUT },
+            default: { type: "spring", stiffness: 460, damping: 32, mass: 0.85 },
           },
     },
   };

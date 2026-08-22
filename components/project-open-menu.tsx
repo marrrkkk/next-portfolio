@@ -101,7 +101,11 @@ export function ProjectOpenMenu({ project }: { project: Work }) {
         transition={
           reduceMotion
             ? { duration: 0 }
-            : { layout: { type: "spring", stiffness: 420, damping: 28, mass: 0.8 } }
+            : {
+                layout: open
+                  ? { type: "spring", stiffness: 380, damping: 28, mass: 1.2 }
+                  : { type: "spring", stiffness: 560, damping: 52, mass: 1.2 },
+              }
         }
         className="absolute top-0 right-0 z-20 flex min-h-[36px] overflow-hidden bg-[#141414] text-white"
       >
@@ -112,14 +116,21 @@ export function ProjectOpenMenu({ project }: { project: Work }) {
               layout="position"
               initial={reduceMotion ? false : { opacity: 0, y: 10, scale: 0.98, filter: "blur(4px)" }}
               animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
-              exit={reduceMotion ? undefined : { opacity: 0, y: 4, scale: 0.98 }}
+              exit={
+                reduceMotion
+                  ? undefined
+                  : { opacity: 0, y: 4, scale: 0.98, filter: "blur(4px)" }
+              }
               transition={
                 reduceMotion
                   ? { duration: 0 }
                   : {
-                      duration: 0.26,
-                      opacity: { duration: 0.26 },
-                      filter: { duration: 0.26 },
+                      type: "spring",
+                      stiffness: 460,
+                      damping: 32,
+                      mass: 0.85,
+                      opacity: { duration: 0.32 },
+                      filter: { duration: open ? 0.32 : 0.16 },
                     }
               }
               role="dialog"
