@@ -11,7 +11,7 @@ export function ProjectDetail({ project }: { project: Work }) {
   return (
     <div className="min-h-screen bg-white font-sans text-[#141414]">
       <div className="mx-auto flex min-h-screen w-full max-w-[964px] flex-col px-6 pt-[30px] pb-[20px] sm:pb-[28px]">
-        <Reveal id={`project-${project.id}-header`}>
+        <Reveal id={`project-${project.id}-header`} className="relative z-30">
         <header className="flex items-center justify-between gap-3">
           <Link
             href="/#work"

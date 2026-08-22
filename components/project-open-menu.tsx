@@ -22,6 +22,7 @@ export function ProjectOpenMenu({ project }: { project: Work }) {
   const [open, setOpen] = useState(false);
   const reduceMotion = useReducedMotion() ?? false;
   const titleId = useId();
+  const menuRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const wasOpen = useRef(false);
@@ -50,6 +51,17 @@ export function ProjectOpenMenu({ project }: { project: Work }) {
   }, [open]);
 
   useEffect(() => {
+    if (!open) return;
+
+    const onPointerDown = (event: PointerEvent) => {
+      if (!menuRef.current?.contains(event.target as Node)) setOpen(false);
+    };
+
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => document.removeEventListener("pointerdown", onPointerDown);
+  }, [open]);
+
+  useEffect(() => {
     if (open) {
       wasOpen.current = true;
       closeRef.current?.focus();
@@ -60,7 +72,7 @@ export function ProjectOpenMenu({ project }: { project: Work }) {
   }, [open]);
 
   return (
-    <div className="relative inline-flex">
+    <div ref={menuRef} className="relative inline-flex">
       {/* Reserve the closed trigger's footprint so opening the card never changes
           the project header height or pushes the page content down. */}
       <span
@@ -76,7 +88,7 @@ export function ProjectOpenMenu({ project }: { project: Work }) {
             <button
               type="button"
               aria-label="Close visit menu"
-              className="fixed inset-0 z-[9] cursor-default"
+              className="pointer-events-none fixed inset-0 z-[9] cursor-default"
               onClick={() => setOpen(false)}
             />,
             document.body,
@@ -98,10 +110,18 @@ export function ProjectOpenMenu({ project }: { project: Work }) {
             <motion.div
               key="links"
               layout="position"
-              initial={reduceMotion ? false : { opacity: 0, y: 6, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
+              initial={reduceMotion ? false : { opacity: 0, y: 10, scale: 0.98, filter: "blur(4px)" }}
+              animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
               exit={reduceMotion ? undefined : { opacity: 0, y: 4, scale: 0.98 }}
-              transition={reduceMotion ? { duration: 0 } : { duration: 0.2 }}
+              transition={
+                reduceMotion
+                  ? { duration: 0 }
+                  : {
+                      duration: 0.26,
+                      opacity: { duration: 0.26 },
+                      filter: { duration: 0.26 },
+                    }
+              }
               role="dialog"
               aria-labelledby={titleId}
               className="w-[220px] shrink-0 p-[14px]"
@@ -126,7 +146,13 @@ export function ProjectOpenMenu({ project }: { project: Work }) {
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={ACTION_LINK_CLASS}
+                    onPointerDown={(event) => event.stopPropagation()}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      event.stopPropagation();
+                      window.open(href, "_blank", "noopener,noreferrer");
+                    }}
+                    className={`${ACTION_LINK_CLASS} cursor-pointer`}
                   >
                     <span className={ACTION_ICON_CLASS}>{icon}</span>
                     <span className="text-[13px] font-medium">{label}</span>
