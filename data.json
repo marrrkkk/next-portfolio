@@ -66,7 +66,7 @@
         "ratio": 1.7786,
         "tech": ["Next.js", "React", "TypeScript", "Supabase", "AI RAG", "Polar"],
         "link": "https://requo.app",
-        "github": "https://github.com/marrrkkk",
+        "github": "https://github.com/marrrkkk/requo",
         "accent": "#bcd6f2"
       },
       {
@@ -81,8 +81,8 @@
         "image": "/work/upclass.png",
         "ratio": 1.8745,
         "tech": ["Next.js", "React", "TypeScript", "Supabase", "AI RAG"],
-        "link": "https://upclass.app",
-        "github": "https://github.com/marrrkkk",
+        "link": "https://upclass.xyz",
+        "github": "https://github.com/marrrkkk/upclass",
         "accent": "#c9c4ef"
       },
       {
@@ -97,8 +97,8 @@
         "image": "/work/freshstart.png",
         "ratio": 1.7756,
         "tech": ["Next.js", "React", "TypeScript", "Supabase", "Motion"],
-        "link": "https://freshstart.ph",
-        "github": "https://github.com/marrrkkk",
+        "link": "https://freshstartph.site",
+        "github": "https://github.com/marrrkkk/freshstartph",
         "accent": "#bfe3cd"
       }
     ]
