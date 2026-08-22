@@ -123,7 +123,7 @@ export function ContactButton({
       transition: {
         // Title ~60ms in, then 30ms apart: one coherent reveal, not a cascade.
         // (`staggerChildren` is deprecated in Motion 13 in favour of this.)
-        delayChildren: reduceMotion ? 0 : stagger(0.03, { startDelay: 0.06 }),
+        delayChildren: reduceMotion ? 0 : stagger(0.03, { startDelay: 0 }),
       },
     },
   };
@@ -299,7 +299,6 @@ export function ContactButton({
             >
               <div className="p-[18px]">
                 <motion.div
-                  layout="position"
                   variants={cardItem}
                   className="flex items-start justify-between gap-[12px]"
                 >
@@ -332,7 +331,6 @@ export function ContactButton({
                     return (
                       <motion.a
                         key={channel.label}
-                        layout="position"
                         variants={cardItem}
                         href={channel.href}
                         target={channel.external ? "_blank" : undefined}
@@ -384,7 +382,6 @@ export function ContactButton({
                 className={`inline-flex ${TRIGGER_HEIGHT} cursor-pointer items-center justify-center ${TRIGGER_GAP} ${triggerPad} ${TRIGGER_TEXT} text-white transition-colors hover:bg-[#333] focus-visible:-outline-offset-2 focus-visible:outline-2 focus-visible:outline-white/70`}
               >
                 <motion.span
-                  layout="position"
                   variants={label}
                   className="inline-flex items-center gap-[6px]"
                 >
