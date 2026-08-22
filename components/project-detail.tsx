@@ -1,4 +1,5 @@
 import { ProjectOpenMenu } from "@/components/project-open-menu";
+import { CaseStudyNav } from "@/components/case-study-nav";
 import { ProjectPreview } from "@/components/project-preview";
 import { Reveal } from "@/components/reveal";
 import { SiteFooter } from "@/components/site-footer";
@@ -6,8 +7,11 @@ import type { Work } from "@/lib/projects";
 import { Undo2 } from "lucide-react";
 import Link from "next/link";
 import data from "@/data.json";
+import { getCaseStudy, type CaseStudyBlock } from "@/lib/case-studies";
 
 export function ProjectDetail({ project }: { project: Work }) {
+  const blocks = getCaseStudy(project.id);
+  const sections = blocks.filter((block): block is Extract<CaseStudyBlock, { type: "heading" }> => block.type === "heading" && block.level === 2).map(({ id, text }) => ({ id, text }));
   return (
     <div className="min-h-screen bg-white font-sans text-[#141414]">
       <div className="mx-auto flex min-h-screen w-full max-w-[964px] flex-col px-6 pt-[30px] pb-[20px] sm:pb-[28px]">
@@ -24,6 +28,7 @@ export function ProjectDetail({ project }: { project: Work }) {
         </header>
         </Reveal>
 
+        {sections.length ? <CaseStudyNav sections={sections} /> : null}
         <main className="mt-[80px] flex-1 sm:mt-[80px]">
           <Reveal id={`project-${project.id}-intro`}>
           <div className="mx-auto max-w-[680px]">
@@ -57,6 +62,21 @@ export function ProjectDetail({ project }: { project: Work }) {
             <ProjectPreview image={project.image} alt={`${project.name} preview`} />
           </div>
           </Reveal>
+
+          {blocks.length ? (
+            <Reveal id={`project-${project.id}-case-study`} amount={0.06}>
+              <article className="mx-auto mt-[84px] max-w-[680px] border-t border-[#e5e5e5] pt-[44px]">
+                {blocks.map((block, index) => {
+                  if (block.type === "heading") {
+                    const Tag = block.level === 2 ? "h2" : "h3";
+                    return <Tag key={`${block.id}-${index}`} id={block.id} className={block.level === 2 ? "mb-[18px] mt-[48px] scroll-mt-[100px] text-[24px] font-semibold leading-[1.1] text-[#141414] first:mt-0" : "mb-[12px] mt-[30px] text-[16px] font-semibold text-[#141414]"}>{block.text}</Tag>;
+                  }
+                  if (block.type === "list") return <ul key={index} className="mb-[24px] list-disc space-y-[8px] pl-[20px] text-[16px] leading-[1.6] text-[#676767]">{block.items.map((item) => <li key={item}>{item}</li>)}</ul>;
+                  return <p key={index} className="mb-[24px] text-[16px] leading-[1.65] text-[#676767]">{block.text}</p>;
+                })}
+              </article>
+            </Reveal>
+          ) : null}
         </main>
 
         <SiteFooter />
