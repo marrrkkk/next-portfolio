@@ -62,7 +62,14 @@
         "timeline": "2026",
         "type": "Web platform",
         "live": true,
-        "image": "/work/requo.png",
+        "image": "/work/requo/requo.png",
+        "images": [
+          "/work/requo/1.png",
+          "/work/requo/2.png",
+          "/work/requo/3.png",
+          "/work/requo/4.png",
+          "/work/requo/5.png"
+        ],
         "ratio": 1.7786,
         "tech": ["Next.js", "React", "TypeScript", "Supabase", "AI RAG", "Polar"],
         "link": "https://requo.app",
@@ -78,7 +85,12 @@
         "timeline": "2025",
         "type": "Web platform",
         "live": true,
-        "image": "/work/upclass.png",
+        "image": "/work/upclass/upclass.png",
+        "images": [
+          "/work/upclass/1.png",
+          "/work/upclass/2.png",
+          "/work/upclass/3.png"
+        ],
         "ratio": 1.8745,
         "tech": ["Next.js", "React", "TypeScript", "Supabase", "AI RAG"],
         "link": "https://upclass.xyz",
@@ -94,7 +106,14 @@
         "timeline": "2025",
         "type": "Studio website",
         "live": true,
-        "image": "/work/freshstart.png",
+        "image": "/work/freshstart/freshstart.png",
+        "images": [
+          "/work/freshstart/1.png",
+          "/work/freshstart/2.png",
+          "/work/freshstart/3.png",
+          "/work/freshstart/4.png",
+          "/work/freshstart/5.png"
+        ],
         "ratio": 1.7756,
         "tech": ["Next.js", "React", "TypeScript", "Supabase", "Motion"],
         "link": "https://freshstartph.site",

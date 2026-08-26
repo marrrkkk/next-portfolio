@@ -1,10 +1,10 @@
 import { ProjectOpenMenu } from "@/components/project-open-menu";
 import { CaseStudyNav } from "@/components/case-study-nav";
-import { ProjectPreview } from "@/components/project-preview";
 import { Reveal } from "@/components/reveal";
 import { SiteFooter } from "@/components/site-footer";
 import type { Work } from "@/lib/projects";
 import { Undo2 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import data from "@/data.json";
 import { getCaseStudy, type CaseStudyBlock } from "@/lib/case-studies";
@@ -58,10 +58,30 @@ export function ProjectDetail({ project }: { project: Work }) {
           </Reveal>
 
           <Reveal id={`project-${project.id}-preview`} amount={0.12}>
-          <div className="mx-auto mt-[58px] max-w-[680px] overflow-hidden rounded-[10px] bg-[#f3f3f3]">
-            <ProjectPreview image={project.image} alt={`${project.name} preview`} />
+          <div className="mx-auto mt-[58px] max-w-[680px]">
+            <Image
+              src={project.image}
+              alt={`${project.name} preview`}
+              width={1440}
+              height={900}
+              sizes="(max-width: 640px) 100vw, 680px"
+              className="h-auto w-full rounded-[10px]"
+            />
           </div>
           </Reveal>
+
+          {project.images?.map((src, index) => (
+            <Reveal key={src} id={`project-${project.id}-image-${index}`} amount={0.06} className="mx-auto mt-[24px] max-w-[680px]">
+              <Image
+                src={src}
+                alt={`${project.name} screenshot ${index + 1}`}
+                width={1440}
+                height={900}
+                sizes="(max-width: 640px) 100vw, 680px"
+                className="h-auto w-full rounded-[10px]"
+              />
+            </Reveal>
+          ))}
 
           {blocks.length ? (
             <Reveal id={`project-${project.id}-case-study`} amount={0.06}>
