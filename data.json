@@ -148,14 +148,16 @@
         }
       },
       {
-        "name": "Tailwind",
-        "icon": {
-          "viewBox": "0 0 32 32",
-          "fill": "currentColor",
-          "paths": [
-            "<path d=\"M9,13.7q1.4-5.6,7-5.6c5.6,0,6.3,4.2,9.1,4.9q2.8.7,4.9-2.1-1.4,5.6-7,5.6c-5.6,0-6.3-4.2-9.1-4.9Q11.1,10.9,9,13.7ZM2,22.1q1.4-5.6,7-5.6c5.6,0,6.3,4.2,9.1,4.9q2.8.7,4.9-2.1-1.4,5.6-7,5.6c-5.6,0-6.3-4.2-9.1-4.9Q4.1,19.3,2,22.1Z\" />"
-          ]
-        }
+        "name": "TypeScript",
+        "icon": "/skills/typescript.svg"
+      },
+      {
+        "name": "Node.js",
+        "icon": "/skills/nodedotjs.svg"
+      },
+      {
+        "name": "PostgreSQL",
+        "icon": "/skills/postgresql.svg"
       },
       {
         "name": "Docker",
@@ -172,20 +174,22 @@
           ]
         }
       },
-      {
-        "name": "Claude Code",
-        "icon": {
-          "viewBox": "0 0 24 24",
-          "fill": "currentColor",
-          "fillRule": "evenodd",
-          "paths": [
-            "<path clipRule=\"evenodd\" fillRule=\"evenodd\" d=\"M20.998 10.949H24v3.102h-3v3.028h-1.487V20H18v-2.921h-1.487V20H15v-2.921H9V20H7.488v-2.921H6V20H4.487v-2.921H3V14.05H0V10.95h3V5h17.998v5.949zM6 10.949h1.488V8.102H6v2.847zm10.51 0H18V8.102h-1.49v2.847z\" />"
-          ]
-        }
-      },
+
       {
         "name": "Git",
         "icon": "/skills/git.svg"
+      },
+      {
+        "name": "Claude Code",
+        "icon": "/skills/claude.svg"
+      },
+      {
+        "name": "Codex",
+        "icon": "/skills/codex.svg"
+      },
+      {
+        "name": "OpenCode",
+        "icon": "/skills/opencode.svg"
       }
     ]
   },
